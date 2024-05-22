@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  models.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.Request:
+    properties:
+      amount:
+        type: integer
+      banknotes:
+        items:
+          type: integer
+        type: array
+    type: object
+  models.Response:
+    properties:
+      exchanges:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API server for Exchange Application
+  termsOfService: http://swagger.io/terms/
+  title: Exchange App API
+  version: "1.0"
+paths:
+  /api/exchange:
+    post:
+      consumes:
+      - application/json
+      description: make an exchange
+      parameters:
+      - description: exchange data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Exchange
+      tags:
+      - exchange
+swagger: "2.0"
