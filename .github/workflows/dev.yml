@@ -3,6 +3,7 @@ name: Go
 on:
   push:
     branches: ["dev"]
+    tags: ["v*"]
 
 jobs:
 
@@ -24,7 +25,6 @@ jobs:
 
       - name: Test
         run: go test -v ./internal/usecase -count=1
-
 
   lint:
     needs: [tests]
