@@ -21,9 +21,8 @@ func CombinationsFinder(amount int, banknotes []int) ([][]int, error) {
 		return nil, err
 	}
 
-	// Удаляем дубликаты для корректной работы алгоритма поиска комбинаций (не уверен, что это нужно
-	// тк по условию не уточняется стоит ли так делать, поэтому оставил закоменченным)
-	// removeDuplicates(banknotes)
+	// Удаляем дубликаты для корректной работы алгоритма поиска комбинаций
+	banknotes = removeDuplicates(banknotes)
 
 	// Сортируем массив банкнот для оптимизации поиска комбинаций
 	sort.Sort(sort.Reverse(sort.IntSlice(banknotes)))
