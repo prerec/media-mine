@@ -37,7 +37,7 @@ func main() {
 	logrus.Printf("server started on http://%s:%s/", viper.GetString("host"), viper.GetString("port"))
 
 	// Заводим канал для ожидания сигнала на остановку от ОС
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	// Регистрируем обработчик сигналов ОС
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	// Блокируемся в main горутине тк наш сервер запущен в отдельной горутине(чтобы приложение не вылетало

@@ -70,7 +70,7 @@ func removeDuplicates(slice []int) []int {
 	result := []int{}
 
 	for _, v := range slice {
-		if encountered[v] == false {
+		if !encountered[v] {
 			encountered[v] = true
 			result = append(result, v)
 		}
